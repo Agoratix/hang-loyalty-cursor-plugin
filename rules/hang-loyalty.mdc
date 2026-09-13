@@ -1,0 +1,26 @@
+---
+description: How to integrate Hang Loyalty (points ledger + rewards) into this codebase. Apply when adding loyalty features, points, rewards, redemptions, quests, puzzles, or loot boxes.
+alwaysApply: false
+---
+
+# Hang Loyalty integration
+
+This project integrates with **Hang Loyalty** — the source of truth for points
+and rewards. When working on loyalty features, follow the bundled
+`hang-loyalty-integration` skill and verify against the sandbox with the
+`hang-loyalty` MCP server.
+
+Non-negotiables:
+
+- All Hang calls are **server-side**. `HANG_API_KEY` is a secret — never expose
+  it to client code.
+- Configure via env vars: `HANG_API_BASE_URL`, `HANG_API_KEY`,
+  `HANG_ACTIVITY_TYPE_ID`.
+- One membership per user, keyed by your stable `external_user_id`; persist the
+  returned membership id.
+- Always pass an `idempotency_key` (your order id) when reporting activities.
+- Display and gate redemptions with `spendable_balance`, not `balance`.
+- One earning rail per order type: partner API for app orders, Toast for
+  in-store — never report Toast orders as activities (double-earns).
+- The MCP server is a dev-time verification tool; production code calls the
+  partner API directly over HTTP.
