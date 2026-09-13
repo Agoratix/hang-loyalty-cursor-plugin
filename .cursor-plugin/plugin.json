@@ -1,0 +1,57 @@
+{
+  "name": "hang-loyalty",
+  "displayName": "Hang Loyalty",
+  "version": "1.0.0",
+  "description": "Integrate the Hang Loyalty partner API (points ledger + rewards) into your codebase — bundles the hang-loyalty MCP server, the integration skill, and a project rule.",
+  "author": {
+    "name": "Hang",
+    "email": "support@hang.xyz"
+  },
+  "homepage": "https://owner.hang.com/mcp",
+  "repository": "https://github.com/Agoratix/hang-loyalty-cursor-plugin",
+  "license": "MIT",
+  "keywords": [
+    "hang",
+    "loyalty",
+    "points",
+    "rewards",
+    "redemptions",
+    "quests",
+    "loot-boxes",
+    "puzzles",
+    "partner-api",
+    "mcp"
+  ],
+  "logo": "assets/logo.svg",
+  "category": "integrations",
+  "tags": ["loyalty", "mcp", "rewards", "hang"],
+  "skills": "./skills/",
+  "rules": "./rules/",
+  "mcpServers": "./mcp.json",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "HANG_API_KEY": {
+        "type": "string",
+        "title": "Hang program API key",
+        "description": "Program-scoped X-API-KEY. Sent as the MCP bearer token. Keep it secret."
+      },
+      "HANG_PORTAL_BYPASS_TOKEN": {
+        "type": "string",
+        "title": "Portal protection bypass token",
+        "description": "Vercel Deployment Protection bypass for owner.hang.com. Get it from https://owner.hang.com/mcp"
+      },
+      "HANG_ACTIVITY_TYPE_ID": {
+        "type": "string",
+        "title": "Default activity type id",
+        "description": "Optional. Default earning activity type for earning tools (also accepted per-call)."
+      },
+      "HANG_ENTERPRISE_API_KEY": {
+        "type": "string",
+        "title": "Enterprise API key",
+        "description": "Optional. Account-level key for /v2/enterprise/* provisioning tools only."
+      }
+    },
+    "required": ["HANG_API_KEY", "HANG_PORTAL_BYPASS_TOKEN"]
+  }
+}
