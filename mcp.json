@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "hang-loyalty": {
+      "url": "https://owner.hang.com/api/mcp/mcp?x-vercel-protection-bypass=${HANG_PORTAL_BYPASS_TOKEN}",
+      "headers": {
+        "Authorization": "Bearer ${HANG_API_KEY}",
+        "X-Hang-Base-Url": "https://loyalty.hang.xyz",
+        "X-Hang-Activity-Type-Id": "${HANG_ACTIVITY_TYPE_ID}",
+        "X-Hang-Enterprise-Api-Key": "${HANG_ENTERPRISE_API_KEY}",
+        "x-vercel-protection-bypass": "${HANG_PORTAL_BYPASS_TOKEN}"
+      }
+    }
+  }
+}
