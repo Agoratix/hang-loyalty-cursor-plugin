@@ -818,10 +818,12 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 
 function verify(rawBody: string, headers: Headers, secret: string) {
   const timestamp = headers.get("hang-timestamp") ?? "";
+  const timestampSeconds = Number(timestamp);
+  if (!timestamp || !Number.isFinite(timestampSeconds)) return false;
 
   // Reject anything older than five minutes so a captured delivery cannot be
   // replayed at you later. The timestamp is signed, so it cannot be edited.
-  if (Math.abs(Date.now() / 1000 - Number(timestamp)) > 300) return false;
+  if (Math.abs(Date.now() / 1000 - timestampSeconds) > 300) return false;
 
   const expected = createHmac("sha256", secret)
     .update(rawBody + timestamp)
